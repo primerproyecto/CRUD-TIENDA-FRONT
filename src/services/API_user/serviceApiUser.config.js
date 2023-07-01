@@ -9,7 +9,7 @@ const APIHeaders = {
 };
 
 export const APIuser = axios.create({
-  baseURL: `http://localhost:3000/api/v1/`,
+  baseURL: `https://crud-tienda-production.up.railway.app/api/v1/`,
   headers: APIHeaders,
   timeout: 600000,
 });

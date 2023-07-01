@@ -4,7 +4,7 @@ export const useRegisterError = (res, setRegisterOk, setRes, setAllUser) => {
   //? si la respuesta es ok ---- > directamente esta el status en la primera clave es decir: res.status
   //? si la respuesta no esta ok--> res.response.status
   //! ------------------ 200 : todo ok
-  if (res?.status == 200) {
+  if (res?.status == 201) {
     console.log("entro en el if 🎉");
     const dataToString = JSON.stringify(res);
     localStorage.setItem("data", dataToString);
@@ -22,7 +22,10 @@ export const useRegisterError = (res, setRegisterOk, setRes, setAllUser) => {
 
   //! ------------------- 409: user ya registrado
 
-  if (res?.response?.status === 409) {
+  if (
+    res?.response?.status === 409 ||
+    res?.response?.data?.includes("email_1 dup key")
+  ) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -74,7 +77,7 @@ export const useRegisterError = (res, setRegisterOk, setRes, setAllUser) => {
   }
 
   //! -------------------- 404: 'error, resend code'
-  if (
+  /*  if (
     res?.response?.status == 404 &&
     res?.response?.data?.confirmationCode.includes("error, resend code")
   ) {
@@ -82,6 +85,21 @@ export const useRegisterError = (res, setRegisterOk, setRes, setAllUser) => {
       icon: "error",
       title: "Oops...",
       text: "Register ok, error to resend code ❎",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    setRes({});
+  } */
+
+  //! ------------------- si no rellena el perfil
+  if (
+    res?.response?.status == 404 &&
+    res?.response?.data?.includes("Path `rol` is required")
+  ) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Tienes que seleccionar un perfil. ❎",
       showConfirmButton: false,
       timer: 1500,
     });

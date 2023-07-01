@@ -9,8 +9,10 @@ export const useLoginError = (res, setLoginOk, userLogin, setRes) => {
       user: res.data.user.name,
       email: res.data.user.email,
       _id: res.data.user._id,
-      image: res.data.user.image,
+      image: res.data.user.imagen,
       check: res.data.user.check,
+      rol: res.data.user.rol,
+      carrito: res.data.user.carrito,
     };
     const dataString = JSON.stringify(dataCustom);
     userLogin(dataString);
@@ -26,7 +28,7 @@ export const useLoginError = (res, setLoginOk, userLogin, setRes) => {
 
   //! ------------------- 404: 'password dont match'
 
-  if (res?.response?.data?.includes("password dont match")) {
+  if (res?.response?.data?.includes("invalid password")) {
     setRes(() => {});
     Swal.fire({
       icon: "error",
@@ -38,7 +40,7 @@ export const useLoginError = (res, setLoginOk, userLogin, setRes) => {
   }
 
   //! ------------------- 404: 'User no register'
-  if (res?.response?.data?.includes("User no register")) {
+  if (res?.response?.data?.includes("User no found")) {
     Swal.fire({
       icon: "error",
       title: "Oops...",

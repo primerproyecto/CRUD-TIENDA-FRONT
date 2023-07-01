@@ -26,11 +26,12 @@ a {
 }
 
 .form-wrap {
-  margin-top: 2rem;
+  margin: 2rem auto 1rem auto;
   background: #f7fffa;
   padding: 15px 25px 30px;
   color: #333;
   border-radius: 5px;
+  max-width: 50em;
 }
 
 .form-wrap h1,

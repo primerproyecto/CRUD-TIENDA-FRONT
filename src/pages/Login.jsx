@@ -55,7 +55,7 @@ export const Login = () => {
               autoComplete="false"
               {...register("email", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
+            <label htmlFor="email" className="custom-placeholder">
               email
             </label>
 
@@ -68,7 +68,7 @@ export const Login = () => {
                 autoComplete="false"
                 {...register("password", { required: true })}
               />
-              <label htmlFor="custom-input" className="custom-placeholder">
+              <label htmlFor="password" className="custom-placeholder">
                 password
               </label>
             </div>

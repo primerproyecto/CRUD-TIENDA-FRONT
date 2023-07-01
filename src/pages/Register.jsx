@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import "./Register.css";
+/* import "./Register.css"; */
 
 import { useEffect, useState } from "react";
 import { Uploadfile, Spinner } from "../components";
@@ -72,7 +72,10 @@ export const Register = () => {
         <h1>Sign Up</h1>
         <p>It’s free and only takes a minute.</p>
         <form onSubmit={handleSubmit(formSubmit)}>
-          <div className="user_container form-group">
+          <div className="">
+            <label htmlFor="name" className="custom-placeholder">
+              username
+            </label>
             <input
               className="input_user"
               type="text"
@@ -81,11 +84,11 @@ export const Register = () => {
               autoComplete="false"
               {...register("name", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              username
-            </label>
           </div>
-          <div className="password_container form-group">
+          <div className="">
+            <label htmlFor="password" className="custom-placeholder">
+              password
+            </label>
             <input
               className="input_user"
               type="password"
@@ -94,12 +97,12 @@ export const Register = () => {
               autoComplete="false"
               {...register("password", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              password
-            </label>
           </div>
 
-          <div className="email_container form-group">
+          <div className="">
+            <label htmlFor="email" className="custom-placeholder">
+              email
+            </label>
             <input
               className="input_user"
               type="email"
@@ -108,33 +111,39 @@ export const Register = () => {
               autoComplete="false"
               {...register("email", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              email
-            </label>
 
             <div className="sexo">
-              <input
-                type="radio"
-                name="sexo"
-                id="hombre"
-                value="hombre"
-                {...register("gender")}
-              />
-              <label htmlFor="hombre" className="label-radio hombre">
-                Hombre
+              <label htmlFor="rol" className="label-radio hombre">
+                User
               </label>
               <input
                 type="radio"
-                name="sexo"
-                id="mujer"
-                value="mujer"
-                {...register("gender")}
+                name="rol"
+                id="rol"
+                value="user"
+                {...register("rol")}
               />
-              <label htmlFor="mujer" className="label-radio mujer">
-                Mujer
+              <label htmlFor="rol1" className="label-radio mujer">
+                Admin
               </label>
+
+              <input
+                type="radio"
+                name="rol"
+                id="rol1"
+                value="admin"
+                {...register("rol")}
+              />
             </div>
-            <Uploadfile />
+            <div className="">
+              <label>Imagen</label>
+              <input
+                type="file"
+                name="image"
+                id="file-upload"
+                accept="image/png, image/jpeg"
+              />
+            </div>
           </div>
 
           <div className="btn_container">
@@ -148,11 +157,9 @@ export const Register = () => {
             </button>
           </div>
           <p className="bottom-text">
-            <small>
-              By clicking the Sign Up button, you agree to our{" "}
-              <Link className="anchorCustom">Terms & Conditions</Link> and{" "}
-              <Link className="anchorCustom">Privacy Policy</Link>.
-            </small>
+            By clicking the Sign Up button, you agree to our{" "}
+            <Link className="anchorCustom">Terms & Conditions</Link> and{" "}
+            <Link className="anchorCustom">Privacy Policy</Link>.
           </p>
         </form>
       </div>

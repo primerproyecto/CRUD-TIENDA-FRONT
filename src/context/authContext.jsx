@@ -29,7 +29,6 @@ export const AuthContextProvider = ({ children }) => {
       },
     },
   });
-  console.log("que es allUser", allUser);
 
   const navigate = useNavigate();
 

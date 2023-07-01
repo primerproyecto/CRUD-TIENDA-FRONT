@@ -90,9 +90,6 @@ i.fa {
   margin: 0 0 0.5rem 0;
   color: #5f6982;
 }
-input[type="file"] {
-  display: none;
-}
 
 #notimage {
   display: block;
