@@ -6,8 +6,6 @@ import {
   Home,
   LogIn,
   LogOut,
-  Settings,
-  User,
   UserPlus,
   Layout,
   PlusCircle,
@@ -30,8 +28,8 @@ export const Header = () => {
             </NavLink>
           ) : null}
           {user !== null ? (
-            <NavLink to="/dashboard">
-              <Layout /> Dashboard
+            <NavLink to={`/carrito/${user.carrito}`}>
+              <Layout /> Carrito
             </NavLink>
           ) : null}
           {user !== null ? (
