@@ -8,9 +8,8 @@ import "./Home.css";
 export const Home = () => {
   const { products, loading } = useProducts();
   const { user } = useAuth();
-  console.log("products", products.data);
-  console.log("que es usuarioContext", user);
   /* useEffect(() => {}, [user]); */
+  console.log("que es user desde la home", user);
 
   return (
     <div>

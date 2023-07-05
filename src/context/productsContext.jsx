@@ -10,7 +10,6 @@ const ProductsContext = createContext();
 export const ProductsContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log("que son products", products);
 
   useEffect(() => {
     getAllProducts().then((res) => {

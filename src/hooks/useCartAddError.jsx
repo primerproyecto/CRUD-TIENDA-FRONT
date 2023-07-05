@@ -1,9 +1,9 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
-export const useCartAddError = (res, setRes) => {
+export const useCartAddError = (res, setRes, setOkAgregado) => {
   //? si la respuesta es ok ---- > directamente esta el status en la primera clave es decir: res.status
   //? si la respuesta no esta ok--> res.response.status
   //! ------------------ 200 : todo ok
-  console.log("aqui res", res);
+  /*  console.log("aqui res", res); */
   if (res?.status == 200) {
     /*  const dataCustom = {
       token: res.data.token,
@@ -17,7 +17,7 @@ export const useCartAddError = (res, setRes) => {
     };
     const dataString = JSON.stringify(dataCustom);
     userLogin(dataString); */
-    setAddOk(() => true);
+    setOkAgregado(() => true);
     Swal.fire({
       icon: "success",
       title: "Agregado",
@@ -25,6 +25,27 @@ export const useCartAddError = (res, setRes) => {
       showConfirmButton: false,
       timer: 1500,
     });
+  }
+
+  //! ------------------- 404: 'password dont match'
+
+  //! --------------------500: INTERNAL SERVER ERROR
+  if (res?.response?.status == 500) {
+    console.log(res.response);
+    setRes(() => {});
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: ` ${res.response.data.mensaje} ❎!`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+};
+
+export const erroresCargaCarrito = (res, setRes, setOkCarrito) => {
+  if (res?.status == 200) {
+    setOkCarrito(() => true);
   }
 
   //! ------------------- 404: 'password dont match'
@@ -58,9 +79,9 @@ export const useCartAddError = (res, setRes) => {
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: ` ${res.response.data.mensaje} ❎!`,
+      text: `solo ${res.response.data.mensaje} ❎!`,
       showConfirmButton: false,
-      timer: 1500,
+      timer: 3500,
     });
   }
 };

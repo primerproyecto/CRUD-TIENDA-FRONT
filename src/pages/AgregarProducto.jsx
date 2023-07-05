@@ -25,8 +25,6 @@ export const AgregarProducto = () => {
   const formSubmit = async (formData) => {
     const inputFile = document.getElementById("file-upload").files;
 
-    console.log("form productos", formData);
-
     if (inputFile.length !== 0) {
       // cuando me han hayan puesto una imagen por el input
 

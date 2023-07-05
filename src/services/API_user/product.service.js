@@ -15,7 +15,6 @@ export const getAllProducts = async () => {
 export const postOneProduct = async (formData) => {
   return APIuser.post("/products/new", formData)
     .then((res) => {
-      console.log("que es res desde prodcut", res);
       return res;
     })
     .catch((error) => error);

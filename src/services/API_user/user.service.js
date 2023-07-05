@@ -7,7 +7,6 @@ export const registerUser = async (formData) => {
     headers: { "Content-Type": "multipart/form-data" },
   })
     .then((res) => {
-      console.log("que es res desde el user.service", res);
       return res;
     })
     .catch((error) => error);
@@ -83,7 +82,6 @@ export const deleteUser = async () => {
 //! --------------------- RESEND CODE --------------------------------
 
 export const resendCodeConfirmationUser = async (formData) => {
-  console.log(formData);
   return APIuser.post("/users/resend", formData)
     .then((res) => res)
     .catch((error) => error);

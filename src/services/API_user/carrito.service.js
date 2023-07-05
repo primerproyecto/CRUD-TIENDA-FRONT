@@ -12,22 +12,23 @@ export const getMyCarrito = async (carritoId) => {
 
 //! -----------------------------ADD A PRODUCT----------------------------------
 
-export const postCarrito = async (formData, carritoId) => {
+export const postCarrito = async (carritoId, formData) => {
   return APIuser.post(`/cart/${carritoId}`, formData)
     .then((res) => {
-      console.log("que es res desde prodcut", res);
       return res;
     })
     .catch((error) => error);
 };
 
-//! ---------------------------LOGIN --------------------------------------------
+//! ---------------------------BORRAR UN PRODUCTO DE UN CARRITO CONCRETO --------------------------------------------
 
-/* export const loginUser = async (formData) => {
-  return APIuser.post("/users/login", formData)
-    .then((res) => res)
+export const quitarItemCarrito = async (carritoId, formData) => {
+  return APIuser.patch(`/cart/${carritoId}`, formData)
+    .then((res) => {
+      return res;
+    })
     .catch((error) => error);
-}; */
+};
 
 //! ------------------------- AUTO LOGIN ------------------------------------------
 

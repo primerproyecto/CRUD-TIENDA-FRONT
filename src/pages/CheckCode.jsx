@@ -23,8 +23,6 @@ export const CheckCode = () => {
   const formSubmit = async (formData) => {
     const userLocal = localStorage.getItem("user");
 
-    console.log("que es userLocal", userLocal);
-
     if (userLocal == null) {
       /// -----> este usuario viene del registro porque no se a logado previamente
       /// ---> recordar alllUser es la res que recibo del registro, solo disponible cuando he echo un registro previo
@@ -32,8 +30,6 @@ export const CheckCode = () => {
         email: allUser.data.user.email,
         confirmationCode: parseInt(formData.confirmationCode),
       };
-
-      console.log("que es customFormData", customFormData);
 
       //! llamada al servicio
       setSend(true);
@@ -72,7 +68,7 @@ export const CheckCode = () => {
       setOkCheck(() => false);
       useAutoLogin(allUser, userLogin, setOkCheck);
     } else {
-      return <Navigate to="/dashboard" />;
+      return <Navigate to="/" />;
     }
   }
 

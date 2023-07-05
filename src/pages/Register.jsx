@@ -51,9 +51,8 @@ export const Register = () => {
   //? 2) funcion que se encarga del formulario- de la data del formulario
   //! ------------------------------------------------------------------------------
   useEffect(() => {
-    console.log(res);
     useRegisterError(res, setOkRegister, setRes, setAllUser);
-    if (res?.status == 200) bridgeData("ALLUSER");
+    if (res?.status == 201) bridgeData("ALLUSER");
   }, [res]);
 
   //! ------------------------------------------------------------------------------
@@ -61,8 +60,6 @@ export const Register = () => {
   //! ------------------------------------------------------------------------------
 
   if (okRegister) {
-    console.log("res", res);
-    console.log("registro correcto ya puedes navegar");
     return <Navigate to="/verifyCode" />;
   }
   return (

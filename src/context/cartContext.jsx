@@ -10,10 +10,9 @@ const CartContext = createContext();
 export const CartContextProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log("que es carritocontext", carrito.data);
 
   useEffect(() => {
-    getMyCarrito("6485b4a9feddc5238e0626cf").then((res) => {
+    getMyCarrito(carrito.data).then((res) => {
       setCarrito(res);
       setLoading(() => false);
     });

@@ -19,27 +19,27 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter basename="/">
     <AuthContextProvider>
       <ProductsContextProvider>
-        <CartContextProvider>
-          <Routes>
-            <Route path="/" element={<App />}>
-              <Route index element={<Home />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/verifyCode" element={<CheckCode />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/carrito/:id" element={<Carrito />} />
-              <Route path="/forgotpassword" element={<ForgotPassword />} />
-              <Route
-                path="/agregarProducto"
-                element={
-                  <ProtectedRoutes>
-                    <AgregarProducto />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-          </Routes>
-        </CartContextProvider>
+        {/* <CartContextProvider> */}
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/verifyCode" element={<CheckCode />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/carrito/:id" element={<Carrito />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route
+              path="/agregarProducto"
+              element={
+                <ProtectedRoutes>
+                  <AgregarProducto />
+                </ProtectedRoutes>
+              }
+            />
+          </Route>
+        </Routes>
+        {/* </CartContextProvider>  */}
       </ProductsContextProvider>
     </AuthContextProvider>
   </BrowserRouter>

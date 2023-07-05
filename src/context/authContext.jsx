@@ -67,7 +67,6 @@ export const AuthContextProvider = ({ children }) => {
   const bridgeData = (state) => {
     const data = localStorage.getItem("data");
     const dataJson = JSON.parse(data);
-    console.log("dataJson desde el bridgeData", dataJson);
     switch (state) {
       case "ALLUSER":
         setAllUser(dataJson);

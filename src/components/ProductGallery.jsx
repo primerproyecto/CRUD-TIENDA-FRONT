@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ShoppingCart, Heart } from "react-feather";
-import { useCart } from "../context/cartContext";
+import { useAuth } from "../context/authContext";
 import { useForm } from "react-hook-form";
 import {
   getMyCarrito,
@@ -9,26 +9,44 @@ import {
 import { useCartAddError } from "../hooks/useCartAddError";
 
 export const ProductGallery = ({ producto }) => {
-  const { carrito, setCarrito } = useCart();
+  const { user, setCarrito } = useAuth();
   const { register, handleSubmit } = useForm();
   const [res, setRes] = useState({});
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [okAgregado, setOkAgregado] = useState(false);
+
+  const carritoId = user.carrito;
 
   const formSubmit = async (formData) => {
-    /*  setSend(true); */
-    setRes(await postCarrito(formData, carrito.data._id));
-    /* setSend(false); */
+    const customFormData = {
+      products: [
+        {
+          productId: formData.productId,
+          cantidad: 1,
+        },
+      ],
+    };
+    setIsDisabled(true);
+    setRes(await postCarrito(carritoId, customFormData));
+    setIsDisabled(false);
   };
 
   //? 2) funcion que se encarga del formulario- de la data del formulario
   //! ------------------------------------------------------------------------------
   useEffect(() => {
-    useCartAddError(res, setRes);
+    useCartAddError(res, setRes, setOkAgregado);
     /* if (res?.status == 200) bridgeData("ALLUSER"); */
   }, [res]);
 
   //! ------------------------------------------------------------------------------
   //? 3) Estados de navegacion ----> lo veremos en siguiente proyectos
   //! ------------------------------------------------------------------------------
+  if (okAgregado) {
+    /* return <Navigate to="/verifyCode" />; */
+  }
+  if (!okAgregado) {
+    /* return <Navigate to="/verifyCode" />; */
+  }
 
   return (
     <figure>
@@ -38,20 +56,27 @@ export const ProductGallery = ({ producto }) => {
       <p>Size: {producto.size}</p>
       <p>Color: {producto.color}</p>
       <p>Categoría: {producto.categories}</p>
-      <form onSubmit={handleSubmit(formSubmit)}>
-        <input
-          type="text"
-          hidden
-          value={producto._id}
-          {...register("productId")}
-        />
-        <button>
-          <ShoppingCart />
-        </button>
-      </form>
-      <button>
-        <Heart />
-      </button>
+      {user && (
+        <>
+          <form onSubmit={handleSubmit(formSubmit)}>
+            <label>
+              <input
+                type="text"
+                value={producto._id}
+                {...register("productId")}
+              />
+            </label>
+
+            <button disabled={isDisabled}>
+              <ShoppingCart />
+            </button>
+          </form>
+          <button>
+            <Heart />
+          </button>{" "}
+        </>
+      )}
+
       <figcaption></figcaption>
     </figure>
   );
