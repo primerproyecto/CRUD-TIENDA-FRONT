@@ -4,23 +4,11 @@ export const useProductAddError = (res, setAddOk, userLogin, setRes) => {
   //? si la respuesta no esta ok--> res.response.status
   //! ------------------ 200 : todo ok
   if (res?.status == 200) {
-    /*  const dataCustom = {
-      token: res.data.token,
-      user: res.data.user.name,
-      email: res.data.user.email,
-      _id: res.data.user._id,
-      image: res.data.user.imagen,
-      check: res.data.user.check,
-      rol: res.data.user.rol,
-      carrito: res.data.user.carrito,
-    };
-    const dataString = JSON.stringify(dataCustom);
-    userLogin(dataString); */
     setAddOk(() => true);
     Swal.fire({
       icon: "success",
-      title: "Welcome to my Page 💌",
-      text: "Login ok ✅",
+      title: "Producto agregado al carrito",
+      text: "El producto se ha agregado satisfactoriamente al catálogo de productos ✅",
       showConfirmButton: false,
       timer: 1500,
     });

@@ -6,3 +6,4 @@ export * from "./useResendCode";
 export * from "./useProductAddError";
 export * from "./useCartAddError";
 export * from "./useCartRemoveError";
+export * from "./useForgotPassword";

@@ -60,7 +60,7 @@ export const Register = () => {
   //! ------------------------------------------------------------------------------
 
   if (okRegister) {
-    return <Navigate to="/verifyCode" />;
+    /*  return <Navigate to="/verifyCode" />; */
   }
   return (
     <>

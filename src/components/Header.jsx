@@ -22,7 +22,7 @@ export const Header = () => {
 
         <nav>
           {user?.rol === "admin" ? (
-            <NavLink to="/dashboard">
+            <NavLink to="/agregarProducto">
               {" "}
               <PlusCircle /> productos
             </NavLink>

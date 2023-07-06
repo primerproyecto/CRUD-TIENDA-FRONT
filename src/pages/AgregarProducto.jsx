@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 /* import "./Register.css"; */
 
 import { useEffect, useState } from "react";
-import { Uploadfile, Spinner } from "../components";
 import {
   getAllProducts,
   postOneProduct,
@@ -10,6 +9,8 @@ import {
 import { useProductAddError } from "../hooks";
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
+import { useProducts } from "../context/productsContext";
+import { ProductGallery, Spinner } from "../components";
 
 export const AgregarProducto = () => {
   const { allUser, setAllUser, bridgeData } = useAuth();
@@ -17,6 +18,7 @@ export const AgregarProducto = () => {
   const [res, setRes] = useState({});
   const [send, setSend] = useState(false);
   const [okAddProduct, setOkAddProduct] = useState(false);
+  const { products, loading } = useProducts();
 
   //! ------------------------------------------------------------------------------
   //? 1) funcion que se encarga del formulario - de la data del formulario
@@ -24,6 +26,7 @@ export const AgregarProducto = () => {
 
   const formSubmit = async (formData) => {
     const inputFile = document.getElementById("file-upload").files;
+    console.log("que es inputfile", inputFile);
 
     if (inputFile.length !== 0) {
       // cuando me han hayan puesto una imagen por el input
@@ -100,7 +103,6 @@ export const AgregarProducto = () => {
               type="file"
               id="file-upload"
               name="image"
-              autoComplete="false"
               {...register("image", { required: true })}
             />
 
@@ -144,6 +146,19 @@ export const AgregarProducto = () => {
             </button>
           </div>
         </form>
+        <section>
+          <div>
+            {loading ? (
+              <Spinner />
+            ) : (
+              <div className="grilla">
+                {products?.data?.map((item) => {
+                  return <ProductGallery key={item._id} producto={item} />;
+                })}
+              </div>
+            )}
+          </div>
+        </section>
       </div>
     </>
   );

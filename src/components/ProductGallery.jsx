@@ -6,6 +6,7 @@ import {
   getMyCarrito,
   postCarrito,
 } from "../services/API_user/carrito.service";
+import { borraProducto } from "../services/API_user/product.service";
 import { useCartAddError } from "../hooks/useCartAddError";
 
 export const ProductGallery = ({ producto }) => {
@@ -48,6 +49,10 @@ export const ProductGallery = ({ producto }) => {
     /* return <Navigate to="/verifyCode" />; */
   }
 
+  function handleBorrarProducto() {
+    e.preventDefault();
+  }
+
   return (
     <figure>
       <img src={producto.image} alt={producto.title} />
@@ -62,13 +67,17 @@ export const ProductGallery = ({ producto }) => {
             <label>
               <input
                 type="text"
+                hidden
                 value={producto._id}
                 {...register("productId")}
               />
             </label>
-
             <button disabled={isDisabled}>
               <ShoppingCart />
+            </button>
+            {user.rol && user.rol === "admin"}{" "}
+            <button onClick={() => borraProducto(producto._id)}>
+              Eliminar
             </button>
           </form>
           <button>

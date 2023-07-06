@@ -13,20 +13,22 @@ export const getAllProducts = async () => {
 //! -----------------------------ADD A PRODUCT----------------------------------
 
 export const postOneProduct = async (formData) => {
-  return APIuser.post("/products/new", formData)
+  return APIuser.post("/products/new", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  })
     .then((res) => {
       return res;
     })
     .catch((error) => error);
 };
 
-//! ---------------------------LOGIN --------------------------------------------
+//! --------------------------- BORRAR PRODUCTO --------------------------------------------
 
-/* export const loginUser = async (formData) => {
-  return APIuser.post("/users/login", formData)
+export const borraProducto = async (carritoId) => {
+  return APIuser.delete(`/products/${carritoId}`)
     .then((res) => res)
     .catch((error) => error);
-}; */
+};
 
 //! ------------------------- AUTO LOGIN ------------------------------------------
 
