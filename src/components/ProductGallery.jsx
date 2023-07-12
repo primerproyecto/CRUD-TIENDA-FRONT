@@ -16,7 +16,9 @@ export const ProductGallery = ({ producto }) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [okAgregado, setOkAgregado] = useState(false);
 
-  const carritoId = user.carrito;
+  if (user) {
+    const carritoId = user.carrito;
+  }
 
   const formSubmit = async (formData) => {
     const customFormData = {
@@ -67,7 +69,6 @@ export const ProductGallery = ({ producto }) => {
             <label>
               <input
                 type="text"
-                hidden
                 value={producto._id}
                 {...register("productId")}
               />
@@ -75,10 +76,10 @@ export const ProductGallery = ({ producto }) => {
             <button disabled={isDisabled}>
               <ShoppingCart />
             </button>
-            {user.rol && user.rol === "admin"}{" "}
+            {/* {user.rol && user.rol === "admin"}{" "}
             <button onClick={() => borraProducto(producto._id)}>
               Eliminar
-            </button>
+            </button> */}
           </form>
           <button>
             <Heart />

@@ -38,8 +38,12 @@ export const autoLoginUser = async (formData) => {
 
 //! ------------------------ FORGOT PASSWORD --------------------------------------
 export const forgotPasswordUser = async (formData) => {
-  return APIuser.patch("/users/forgotpassword", formData)
-    .then((res) => res)
+  console.log("que es formData desde el user service", formData);
+  return APIuser.get("/users/forgotpassword", formData)
+    .then((res) => {
+      console.log("que es res desde el user service", res);
+      return res;
+    })
     .catch((error) => error);
 };
 

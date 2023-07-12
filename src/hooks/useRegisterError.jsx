@@ -77,7 +77,7 @@ export const useRegisterError = (res, setRegisterOk, setRes, setAllUser) => {
   }
 
   //! -------------------- 404: 'error, resend code'
-  /*  if (
+  if (
     res?.response?.status == 404 &&
     res?.response?.data?.confirmationCode.includes("error, resend code")
   ) {
@@ -89,7 +89,7 @@ export const useRegisterError = (res, setRegisterOk, setRes, setAllUser) => {
       timer: 1500,
     });
     setRes({});
-  } */
+  }
 
   //! ------------------- si no rellena el perfil
   if (

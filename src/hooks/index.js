@@ -7,3 +7,4 @@ export * from "./useProductAddError";
 export * from "./useCartAddError";
 export * from "./useCartRemoveError";
 export * from "./useForgotPassword";
+export * from "./useModifyPassword";

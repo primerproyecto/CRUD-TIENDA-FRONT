@@ -10,6 +10,7 @@ import {
   Profile,
   Register,
   AgregarProducto,
+  ModifyPassword,
 } from "./pages";
 import { ProtectedRoutes } from "./components";
 import { AuthContextProvider } from "./context/authContext.jsx";
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/profile" element={<Profile />} />
             <Route path="/carrito/:id" element={<Carrito />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/changepassword" element={<ModifyPassword />} />
             <Route
               path="/agregarProducto"
               element={

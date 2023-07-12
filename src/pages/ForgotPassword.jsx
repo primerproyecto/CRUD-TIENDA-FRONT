@@ -20,7 +20,7 @@ export const ForgotPassword = () => {
   };
   //! 2) ----------------USEEFFECT QUE GESTIONA LA RES CON SUS ERRORES Y SUS 200
   useEffect(() => {
-    console.log(res);
+    console.log("que es res desde el fortogpass", res);
     useForgotPassword(res, setRes, setForgotOk);
   }, [res]);
 
@@ -34,14 +34,14 @@ export const ForgotPassword = () => {
   return (
     <>
       <div className="form-wrap">
-        <h1>Change your password 💱</h1>
+        <h1>Cambiar contraseña</h1>
 
         <form onSubmit={handleSubmit(formSubmit)}>
           <div className="user_container form-group">
             <input
               className="input_user"
               type="text"
-              id="email"
+              id="custom-input"
               name="email"
               autoComplete="false"
               {...register("email", { required: true })}

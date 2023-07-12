@@ -9,10 +9,12 @@ import {
   quitarItemCarrito,
 } from "../services/API_user/carrito.service";
 
+import { useProducts } from "../context/productsContext";
+
 export const Carrito = () => {
+  const [carrito, setCarrito] = useState([]);
   const { id } = useParams();
   const { user } = useAuth();
-  const [productos, setProducts] = useState([]);
   const idI11 = useId();
 
   const [res, setRes] = useState({});
@@ -37,10 +39,10 @@ export const Carrito = () => {
     // Lógica para obtener los valores del endpoint
     const fetchData = async () => {
       try {
-        const response = await getMyCarrito(user.carrito);
-        const jsonData = await response.data;
-        setProducts(jsonData.products);
-        setRes(await getMyCarrito(user.carrito));
+        const response = await getMyCarrito(carritoId);
+        const jsonData = await response;
+        console.log("que es jsondata", jsonData.data.products);
+        /* setCarrito(jsonData.data.products); */
       } catch (error) {
         console.error(error);
       }
@@ -57,30 +59,31 @@ export const Carrito = () => {
 
   return (
     <div>
-      <h1>Carrito {id}</h1>
+      <p>
+        Carrito {id} del usuario {user.name}{" "}
+      </p>
       <p>Lista de productos del usuario</p>
       <ul>
-        {productos.map((item) => {
-          {
-            /* console.log("ques es item", item); */
-          }
-          return (
-            <li key={idI11 + Math.random()}>
-              {item.productId} - {item.cantidad}{" "}
-              <form onSubmit={handleSubmit(formSubmitQuitar)}>
-                <label>
-                  <input
-                    type="text"
-                    hidden={true}
-                    value={item.productId}
-                    {...register("productId")}
-                  />
-                </label>
-                <button>Eliminar</button>
-              </form>
-            </li>
-          );
-        })}
+        {carrito.length}
+        {/*  {products?.data?.length > 0 &&
+          products?.data.map((item) => {
+            return (
+              <li key={idI11 + Math.random()}>
+                {item._id} - {item.title} - <img src={item.image} height="60" />
+                <form onSubmit={handleSubmit(formSubmitQuitar)}>
+                  <label>
+                    <input
+                      type="text"
+                      hidden={true}
+                      value={item.productId}
+                      {...register("productId")}
+                    />
+                  </label>
+                  <button>Eliminar</button>
+                </form>
+              </li>
+            );
+          })} */}
       </ul>
     </div>
   );

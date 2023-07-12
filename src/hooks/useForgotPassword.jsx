@@ -43,11 +43,11 @@ export const useForgotPassword = (res, setRes, setForgotOk) => {
   }
 
   //! -------- 404 = 'dont send email and dont update user'
-  if (res?.response?.data?.includes("dont send email and dont update user")) {
+  if (res?.response?.data?.includes("User not register")) {
     setRes(() => ({}));
     Swal.fire({
       icon: "error",
-      title: "Oops...",
+      title: "Usuario no registrado",
       text: "No update password,  ❎ Try again, please",
       showConfirmButton: false,
       timer: 3000,

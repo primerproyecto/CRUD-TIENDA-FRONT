@@ -2,10 +2,7 @@ import { useForm } from "react-hook-form";
 /* import "./Register.css"; */
 
 import { useEffect, useState } from "react";
-import {
-  getAllProducts,
-  postOneProduct,
-} from "../services/API_user/product.service";
+import { postOneProduct } from "../services/API_user/product.service";
 import { useProductAddError } from "../hooks";
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
