@@ -5,3 +5,8 @@ export * from "./Uploadfile";
 export * from "./ButtonResend";
 export * from "./ProtectedRoutes";
 export * from "./ProductGallery";
+export * from "./Protected";
+export * from "./ProtectedCheckChildren";
+export * from "./ChangePassword";
+export * from "./FormProfile";
+export * from "./FigureUser";

@@ -6,9 +6,7 @@ export const registerUser = async (formData) => {
   return APIuser.post("/users/register", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   })
-    .then((res) => {
-      return res;
-    })
+    .then((res) => res)
     .catch((error) => error);
 };
 
@@ -38,12 +36,8 @@ export const autoLoginUser = async (formData) => {
 
 //! ------------------------ FORGOT PASSWORD --------------------------------------
 export const forgotPasswordUser = async (formData) => {
-  console.log("que es formData desde el user service", formData);
-  return APIuser.get("/users/forgotpassword", formData)
-    .then((res) => {
-      console.log("que es res desde el user service", res);
-      return res;
-    })
+  return APIuser.post("/users/forgotpassword", formData)
+    .then((res) => res)
     .catch((error) => error);
 };
 
@@ -64,6 +58,7 @@ export const changePasswordUser = async (formData) => {
 export const updateUser = async (formData) => {
   return APIuser.patch("/users/update/update", formData, {
     headers: {
+      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${updateToken()}`,
     },
   })
@@ -86,6 +81,7 @@ export const deleteUser = async () => {
 //! --------------------- RESEND CODE --------------------------------
 
 export const resendCodeConfirmationUser = async (formData) => {
+  console.log(formData);
   return APIuser.post("/users/resend", formData)
     .then((res) => res)
     .catch((error) => error);

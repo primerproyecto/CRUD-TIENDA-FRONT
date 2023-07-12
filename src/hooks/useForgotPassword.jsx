@@ -29,26 +29,14 @@ export const useForgotPassword = (res, setRes, setForgotOk) => {
       timer: 1500,
     });
   }
-  //! -------- 404 = 'User no register'
-
-  if (res?.response?.data?.includes("User no register")) {
-    setRes(() => ({}));
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Enter a valid email address ❎",
-      showConfirmButton: false,
-      timer: 3000,
-    });
-  }
 
   //! -------- 404 = 'dont send email and dont update user'
   if (res?.response?.data?.includes("User not register")) {
     setRes(() => ({}));
     Swal.fire({
       icon: "error",
-      title: "Usuario no registrado",
-      text: "No update password,  ❎ Try again, please",
+      title: "Oops...",
+      text: "No hay nadie con esa dirección",
       showConfirmButton: false,
       timer: 3000,
     });

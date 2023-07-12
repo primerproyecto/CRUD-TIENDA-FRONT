@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { forgotPasswordUser } from "../services/API_user/user.service";
 import { useForgotPassword } from "../hooks";
-useForgotPassword;
+
 export const ForgotPassword = () => {
   const [res, setRes] = useState({});
   const [send, setSend] = useState(false);
@@ -14,13 +14,13 @@ export const ForgotPassword = () => {
   //! 1)-------------------- LA FUNCIOON QUE SE ENCARGA DE GESTIONAR LOS DATOS DEL FORMULARIO
 
   const formSubmit = async (formData) => {
+    console.log("que es formData", formData);
     setSend(true);
     setRes(await forgotPasswordUser(formData));
     setSend(false);
   };
   //! 2) ----------------USEEFFECT QUE GESTIONA LA RES CON SUS ERRORES Y SUS 200
   useEffect(() => {
-    console.log("que es res desde el fortogpass", res);
     useForgotPassword(res, setRes, setForgotOk);
   }, [res]);
 
@@ -34,7 +34,7 @@ export const ForgotPassword = () => {
   return (
     <>
       <div className="form-wrap">
-        <h1>Cambiar contraseña</h1>
+        <h1>Olvidaste tu contraseña ?</h1>
 
         <form onSubmit={handleSubmit(formSubmit)}>
           <div className="user_container form-group">

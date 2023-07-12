@@ -8,3 +8,5 @@ export * from "./useCartAddError";
 export * from "./useCartRemoveError";
 export * from "./useForgotPassword";
 export * from "./useModifyPassword";
+export * from "./useChangePasswordError";
+export * from "./useUpdateError";

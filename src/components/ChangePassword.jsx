@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { changePasswordUser } from "../services/API_user/user.service";
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 import { useChangePasswordError } from "../hooks";
-export const ModifyPassword = () => {
+export const ChangePassword = () => {
   const { setUser } = useAuth();
   const { handleSubmit, register } = useForm();
   const [res, setRes] = useState({});

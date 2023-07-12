@@ -87,7 +87,7 @@ export const Login = () => {
             <small>
               Have you forgotten the password?
               <Link to="/forgotpassword" className="anchorCustom">
-                Change password
+                Olvidé mi contraseña
               </Link>
             </small>
           </p>
