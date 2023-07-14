@@ -1,6 +1,5 @@
 import { useAuth } from "../context/authContext";
 import { useForm } from "react-hook-form";
-import "./CheckCode.css";
 import { useEffect, useState } from "react";
 import {
   checkCodeConfirmationUser,
@@ -68,7 +67,7 @@ export const CheckCode = () => {
       setOkCheck(() => false);
       useAutoLogin(allUser, userLogin, setOkCheck);
     } else {
-      return <Navigate to="/" />;
+      return <Navigate to="/profile" />;
     }
   }
 

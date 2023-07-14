@@ -1,26 +1,41 @@
-import "./Profile.css";
 import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Key, UserX } from "react-feather";
-Key;
+import { ChangePassword, FormProfile } from "../components";
+import { useDeleteUser } from "../hooks";
+
 export const Profile = () => {
-  const { user } = useAuth();
-  console.log("que es user", user);
+  const [changeRender, setChangeRender] = useState(true);
+  const { user, setUser } = useAuth();
   return (
     <div>
-      <Link to="/changepassword">
-        <Key />
-        Cambiar contraseña
-      </Link>
-      <Link to="/changepassword">
-        <UserX />
-        Borrar usuario
-      </Link>
-      <h1>
-        Nombre {user.email} - {user.rol}
-      </h1>
-      <img src={user.image} />
-      <h2>Carrito: {user.carrito}</h2>
+      <>
+        <div className="flexContainer-ai-center">
+          <a
+            href="#"
+            className="iconNav"
+            onClick={() => setChangeRender(false)}
+          >
+            {" "}
+            <Key />
+            Cambiar contraseña
+          </a>
+          <a href="#" className="iconNav" onClick={() => setChangeRender(true)}>
+            Cambiar datos
+          </a>
+          <a
+            href="#"
+            className="iconNav"
+            onClick={() => useDeleteUser(setUser)}
+          >
+            <UserX /> Delete user
+          </a>
+        </div>
+        <div className="fluidContainerProfile">
+          {changeRender ? <FormProfile /> : <ChangePassword />}
+        </div>
+      </>
     </div>
   );
 };

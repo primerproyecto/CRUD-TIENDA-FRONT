@@ -3,8 +3,6 @@ import { ProductGallery, Spinner } from "../components";
 import { useAuth } from "../context/authContext";
 import { useProducts } from "../context/productsContext";
 
-import "./Home.css";
-
 export const Home = () => {
   const { products, loading } = useProducts();
   const { user } = useAuth();
@@ -12,7 +10,7 @@ export const Home = () => {
   console.log("que es user desde la home", user);
 
   return (
-    <div>
+    <>
       {loading ? (
         <Spinner />
       ) : (
@@ -22,6 +20,6 @@ export const Home = () => {
           })}
         </div>
       )}
-    </div>
+    </>
   );
 };

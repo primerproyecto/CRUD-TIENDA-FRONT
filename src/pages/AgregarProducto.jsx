@@ -143,19 +143,6 @@ export const AgregarProducto = () => {
             </button>
           </div>
         </form>
-        <section>
-          <div>
-            {loading ? (
-              <Spinner />
-            ) : (
-              <div className="grilla">
-                {products?.data?.map((item) => {
-                  return <ProductGallery key={item._id} producto={item} />;
-                })}
-              </div>
-            )}
-          </div>
-        </section>
       </div>
     </>
   );

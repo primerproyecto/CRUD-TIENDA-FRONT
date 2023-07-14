@@ -20,7 +20,6 @@ export const FormProfile = () => {
 
   //! ------------ 1) La funcion que gestiona el formulario----
   const formSubmit = (formData) => {
-    console.log("entro");
     Swal.fire({
       title: "Are you sure you want to change your data profile?",
       icon: "warning",
@@ -64,6 +63,10 @@ export const FormProfile = () => {
         <div className="form-wrap formProfile">
           <h1>Change your data profile ♻</h1>
           <p>Please, enter your new data profile</p>
+          <p>Carrito id: {user.carrito}</p>
+          <span>
+            Nombre {user.email} - {user.rol}
+          </span>
           <form onSubmit={handleSubmit(formSubmit)}>
             <div className="user_container form-group">
               <input

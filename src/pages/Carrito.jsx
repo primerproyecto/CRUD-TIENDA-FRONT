@@ -10,10 +10,17 @@ import {
 } from "../services/API_user/carrito.service";
 
 import { useProducts } from "../context/productsContext";
+async function fetcher(endpoint) {
+  const response = await fetch(endpoint);
+  const json = await response.json();
 
+  return json;
+}
 export const Carrito = () => {
-  const [carrito, setCarrito] = useState([]);
   const { id } = useParams();
+
+  const [carrito, setCarrito] = useState([]);
+
   const { user } = useAuth();
   const idI11 = useId();
 
@@ -40,9 +47,9 @@ export const Carrito = () => {
     const fetchData = async () => {
       try {
         const response = await getMyCarrito(carritoId);
-        const jsonData = await response;
-        console.log("que es jsondata", jsonData.data.products);
-        /* setCarrito(jsonData.data.products); */
+        console.log("que es response", response.data.products);
+        const arr = [...response.data.products];
+        setCarrito(arr);
       } catch (error) {
         console.error(error);
       }
@@ -59,13 +66,23 @@ export const Carrito = () => {
 
   return (
     <div>
+      {console.log("que es carrito", carrito)}
       <p>
         Carrito {id} del usuario {user.name}{" "}
       </p>
       <p>Lista de productos del usuario</p>
       <ul>
-        {carrito.length}
-        {/*  {products?.data?.length > 0 &&
+        {carrito.map((item) => {
+          return (
+            <li key={item._id + Math.random()}>
+              {item.productId}- {item.cantidad}
+            </li>
+          );
+        })}
+      </ul>
+      <ul>
+        {/* {carrito.map((item) => console.log("que es item", item))} */}
+        {/* {products?.data?.length > 0 &&
           products?.data.map((item) => {
             return (
               <li key={idI11 + Math.random()}>

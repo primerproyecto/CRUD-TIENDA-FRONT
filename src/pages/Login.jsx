@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import "./Login.css";
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { loginUser } from "../services/API_user/user.service";
@@ -43,9 +42,11 @@ export const Login = () => {
     <>
       <div className="form-wrap">
         <h1>Sign In</h1>
-        <p>We are happy to see you again 💌</p>
         <form onSubmit={handleSubmit(formSubmit)}>
-          <div className="email_container form-group">
+          <div className="form-group">
+            <label htmlFor="email" className="custom-placeholder">
+              Email
+            </label>
             <input
               className="input_user"
               type="email"
@@ -54,11 +55,11 @@ export const Login = () => {
               autoComplete="false"
               {...register("email", { required: true })}
             />
-            <label htmlFor="email" className="custom-placeholder">
-              email
-            </label>
 
-            <div className="password_container form-group">
+            <div className="form-group">
+              <label htmlFor="password" className="custom-placeholder">
+                Password
+              </label>
               <input
                 className="input_user"
                 type="password"
@@ -67,9 +68,6 @@ export const Login = () => {
                 autoComplete="false"
                 {...register("password", { required: true })}
               />
-              <label htmlFor="password" className="custom-placeholder">
-                password
-              </label>
             </div>
           </div>
 

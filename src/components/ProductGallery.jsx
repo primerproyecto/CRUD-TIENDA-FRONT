@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ShoppingCart, Heart } from "react-feather";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { useForm } from "react-hook-form";
 import {
@@ -45,14 +46,10 @@ export const ProductGallery = ({ producto }) => {
   //? 3) Estados de navegacion ----> lo veremos en siguiente proyectos
   //! ------------------------------------------------------------------------------
   if (okAgregado) {
-    /* return <Navigate to="/verifyCode" />; */
+    return <Navigate to={`/carrito/${user.carrito}`} />;
   }
   if (!okAgregado) {
     /* return <Navigate to="/verifyCode" />; */
-  }
-
-  function handleBorrarProducto() {
-    e.preventDefault();
   }
 
   return (

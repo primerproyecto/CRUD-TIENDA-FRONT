@@ -53,6 +53,9 @@ export const ChangePassword = () => {
         <p>Please, enter your old and new passwords</p>
         <form onSubmit={handleSubmit(formSubmit)}>
           <div className="password_container form-group">
+            <label htmlFor="custom-input" className="custom-placeholder">
+              Old password
+            </label>
             <input
               className="input_user"
               type="password"
@@ -61,11 +64,11 @@ export const ChangePassword = () => {
               autoComplete="false"
               {...register("password", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              Old password
-            </label>
           </div>
           <div className="newPassword_container form-group">
+            <label htmlFor="custom-input" className="custom-placeholder">
+              New password
+            </label>
             <input
               className="input_user"
               type="password"
@@ -74,11 +77,11 @@ export const ChangePassword = () => {
               autoComplete="false"
               {...register("newPassword", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              New password
-            </label>
           </div>
           <div className="confirmPassword_container form-group">
+            <label htmlFor="custom-input" className="custom-placeholder">
+              Confirm new password
+            </label>
             <input
               className="input_user"
               type="password"
@@ -87,9 +90,6 @@ export const ChangePassword = () => {
               autoComplete="false"
               {...register("confirmPassword", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              Confirm new password
-            </label>
           </div>
           <div className="btn_container">
             <button

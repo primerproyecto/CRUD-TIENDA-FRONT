@@ -1,4 +1,3 @@
-import "./ForgotPassword.css";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
@@ -37,7 +36,10 @@ export const ForgotPassword = () => {
         <h1>Olvidaste tu contraseña ?</h1>
 
         <form onSubmit={handleSubmit(formSubmit)}>
-          <div className="user_container form-group">
+          <div className="form-group">
+            <label htmlFor="custom-input" className="custom-placeholder">
+              Email
+            </label>
             <input
               className="input_user"
               type="text"
@@ -46,9 +48,6 @@ export const ForgotPassword = () => {
               autoComplete="false"
               {...register("email", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              Email
-            </label>
           </div>
 
           <div className="btn_container">

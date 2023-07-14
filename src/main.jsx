@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import {
   CheckCode,
   Carrito,
@@ -12,31 +13,61 @@ import {
   AgregarProducto,
   ModifyPassword,
 } from "./pages";
-import { ProtectedRoutes } from "./components";
+import { ProtectedCheckChildren, Protected } from "./components";
 import { AuthContextProvider } from "./context/authContext.jsx";
 import { ProductsContextProvider } from "./context/productsContext.jsx";
 import { CartContextProvider } from "./context/cartContext.jsx";
+import GlobalStyle from "./globalStyles.js";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter basename="/">
     <AuthContextProvider>
       <ProductsContextProvider>
+        <GlobalStyle />
         {/* <CartContextProvider> */}
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/verifyCode" element={<CheckCode />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/carrito/:id" element={<Carrito />} />
+            <Route
+              path="/verifyCode"
+              element={
+                <ProtectedCheckChildren>
+                  <CheckCode />
+                </ProtectedCheckChildren>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Protected>
+                  <Profile />
+                </Protected>
+              }
+            />
+            <Route
+              path="/carrito/:id"
+              element={
+                <Protected>
+                  <Carrito />
+                </Protected>
+              }
+            />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/changepassword" element={<ModifyPassword />} />
+            <Route
+              path="/changepassword"
+              element={
+                <Protected>
+                  <ModifyPassword />
+                </Protected>
+              }
+            />
             <Route
               path="/agregarProducto"
               element={
-                <ProtectedRoutes>
+                <Protected>
                   <AgregarProducto />
-                </ProtectedRoutes>
+                </Protected>
               }
             />
           </Route>

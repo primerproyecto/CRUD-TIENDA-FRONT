@@ -29,7 +29,7 @@ export const useCartAddError = (res, setRes, setOkAgregado) => {
 
   //! ------------------- 404: 'password dont match'
 
-  if (res?.status == 200 && res?.data?.includes("Producto borrado")) {
+  /* if (res?.status == 200 && res?.data?.includes("Producto borrado")) {
     setOkAgregado(() => true);
     Swal.fire({
       icon: "success",
@@ -38,7 +38,7 @@ export const useCartAddError = (res, setRes, setOkAgregado) => {
       showConfirmButton: false,
       timer: 1500,
     });
-  }
+  } */
 
   //! --------------------500: INTERNAL SERVER ERROR
   if (res?.response?.status == 500) {
