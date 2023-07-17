@@ -17,10 +17,6 @@ export const ProductGallery = ({ producto }) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [okAgregado, setOkAgregado] = useState(false);
 
-  if (user) {
-    const carritoId = user.carrito;
-  }
-
   const formSubmit = async (formData) => {
     const customFormData = {
       products: [
@@ -31,7 +27,7 @@ export const ProductGallery = ({ producto }) => {
       ],
     };
     setIsDisabled(true);
-    setRes(await postCarrito(carritoId, customFormData));
+    setRes(await postCarrito(user.carrito, customFormData));
     setIsDisabled(false);
   };
 
@@ -46,10 +42,8 @@ export const ProductGallery = ({ producto }) => {
   //? 3) Estados de navegacion ----> lo veremos en siguiente proyectos
   //! ------------------------------------------------------------------------------
   if (okAgregado) {
-    return <Navigate to={`/carrito/${user.carrito}`} />;
-  }
-  if (!okAgregado) {
-    /* return <Navigate to="/verifyCode" />; */
+    console.log("que es res", res);
+    /*  return <Navigate to={`/carrito/${user.carrito}`} />; */
   }
 
   return (

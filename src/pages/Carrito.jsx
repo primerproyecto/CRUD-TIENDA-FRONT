@@ -8,14 +8,10 @@ import {
   getMyCarrito,
   quitarItemCarrito,
 } from "../services/API_user/carrito.service";
+import { Navigate } from "react-router-dom";
 
 import { useProducts } from "../context/productsContext";
-async function fetcher(endpoint) {
-  const response = await fetch(endpoint);
-  const json = await response.json();
 
-  return json;
-}
 export const Carrito = () => {
   const { id } = useParams();
 
@@ -27,7 +23,7 @@ export const Carrito = () => {
   const [res, setRes] = useState({});
   const [send, setSend] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [okCarrito, setOkCarrito] = useState(false);
+  const [removeCarrito, setORemoveCarrito] = useState(false);
 
   const carritoId = user.carrito;
 
@@ -47,9 +43,8 @@ export const Carrito = () => {
     const fetchData = async () => {
       try {
         const response = await getMyCarrito(carritoId);
-        console.log("que es response", response.data.products);
-        const arr = [...response.data.products];
-        setCarrito(arr);
+        /*  const arr = [...response.data.products]; */
+        setCarrito(...carrito, response.data.products);
       } catch (error) {
         console.error(error);
       }
@@ -58,41 +53,30 @@ export const Carrito = () => {
   }, []);
 
   useEffect(() => {
-    useCartRemoveError(res, setOkCarrito, setRes);
+    /*  console.log("que es carrito", carrito); */
+    useCartRemoveError(res, setORemoveCarrito, setRes);
   }, [res]);
 
-  if (okCarrito) {
+  if (removeCarrito) {
+    return <Navigate to={`/carrito/${user.carrito}`} />;
   }
 
   return (
     <div>
-      {console.log("que es carrito", carrito)}
-      <p>
-        Carrito {id} del usuario {user.name}{" "}
-      </p>
       <p>Lista de productos del usuario</p>
       <ul>
-        {carrito.map((item) => {
-          return (
-            <li key={item._id + Math.random()}>
-              {item.productId}- {item.cantidad}
-            </li>
-          );
-        })}
-      </ul>
-      <ul>
-        {/* {carrito.map((item) => console.log("que es item", item))} */}
-        {/* {products?.data?.length > 0 &&
-          products?.data.map((item) => {
+        {carrito &&
+          carrito.map((item) => {
             return (
-              <li key={idI11 + Math.random()}>
-                {item._id} - {item.title} - <img src={item.image} height="60" />
+              <li key={item._id}>
+                -Producto {item.productId.title} - Cantidad - {item.cantidad} -{" "}
+                <img src={item.productId.image} width="30" alt=" " />
                 <form onSubmit={handleSubmit(formSubmitQuitar)}>
                   <label>
                     <input
                       type="text"
                       hidden={true}
-                      value={item.productId}
+                      value={item.productId._id}
                       {...register("productId")}
                     />
                   </label>
@@ -100,7 +84,7 @@ export const Carrito = () => {
                 </form>
               </li>
             );
-          })} */}
+          })}
       </ul>
     </div>
   );

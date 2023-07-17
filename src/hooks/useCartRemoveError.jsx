@@ -1,11 +1,11 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
-export const useCartRemoveError = (res, setRes, setOkAgregado) => {
+export const useCartRemoveError = (res, setORemoveCarrito, setRes) => {
   //? si la respuesta es ok ---- > directamente esta el status en la primera clave es decir: res.status
   //? si la respuesta no esta ok--> res.response.status
   //! ------------------ 200 : todo ok
   /*  console.log("aqui res", res); */
   if (res?.status == 200) {
-    setOkAgregado(() => true);
+    setORemoveCarrito(() => true);
     Swal.fire({
       icon: "success",
       title: "Eliminado",
