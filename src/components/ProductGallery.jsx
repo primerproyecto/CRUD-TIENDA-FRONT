@@ -60,6 +60,7 @@ export const ProductGallery = ({ producto }) => {
             <label>
               <input
                 type="text"
+                hidden={false}
                 value={producto._id}
                 {...register("productId")}
               />
@@ -67,10 +68,13 @@ export const ProductGallery = ({ producto }) => {
             <button disabled={isDisabled}>
               <ShoppingCart />
             </button>
-            {/* {user.rol && user.rol === "admin"}{" "}
-            <button onClick={() => borraProducto(producto._id)}>
-              Eliminar
-            </button> */}
+            {user.rol && user.rol === "admin" ? (
+              <button onClick={() => borraProducto(producto._id)}>
+                Eliminar
+              </button>
+            ) : (
+              ""
+            )}
           </form>
           <button>
             <Heart />

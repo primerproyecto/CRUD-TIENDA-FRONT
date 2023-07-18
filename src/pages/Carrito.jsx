@@ -60,23 +60,23 @@ export const Carrito = () => {
   if (removeCarrito) {
     return <Navigate to={`/carrito/${user.carrito}`} />;
   }
-
+  console.log("que es carrito", carrito);
   return (
     <div>
       <p>Lista de productos del usuario</p>
       <ul>
         {carrito &&
-          carrito.map((item) => {
+          carrito?.map((item) => {
             return (
               <li key={item._id}>
-                -Producto {item.productId.title} - Cantidad - {item.cantidad} -{" "}
-                <img src={item.productId.image} width="30" alt=" " />
+                -Producto {item?.productId?.title} - Cantidad - {item?.cantidad}{" "}
+                - <img src={item?.productId?.image} width="30" alt=" " />
                 <form onSubmit={handleSubmit(formSubmitQuitar)}>
                   <label>
                     <input
                       type="text"
                       hidden={true}
-                      value={item.productId._id}
+                      value={item?.productId?._id}
                       {...register("productId")}
                     />
                   </label>
